@@ -17,12 +17,20 @@ public class Box<T extends Fruit> {
   }
 
   public boolean add(T fruit) {
+    if (fruit == null) {
+      return false;
+    }
+
     fruitList.add(fruit);
     boxWeight += fruit.getWeight();
     return true;
   }
 
   public boolean add(T fruit, int amount) {
+    if (fruit == null || amount <= 0) {
+      return false;
+    }
+
     for (int i = 0; i < amount; i++) {
       fruitList.add(fruit);
       boxWeight += fruit.getWeight();
@@ -31,10 +39,18 @@ public class Box<T extends Fruit> {
   }
 
   public boolean compare(Box<?> box) {
+    if (box == null) {
+      return false;
+    }
+
     return boxWeight == box.getWeight();
   }
 
   public boolean merge(Box<T> box) {
+    if (box == null) {
+      return false;
+    }
+
     fruitList.addAll(box.getFruitList());
     box.getFruitList().clear();
     box.boxWeight = 0;
